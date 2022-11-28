@@ -8,5 +8,5 @@ categoryRouter.post("/create-category",[categoryValidations,authorization.author
 categoryRouter.get("/categories/:page",authorization.authorized,categoryContoller.categories)
 categoryRouter.get("/fetch-category/:id",authorization.authorized,categoryContoller.fetchCategory)
 categoryRouter.put("/update-category/:id",[categoryValidations,authorization.authorized],categoryContoller.updateCategory)
-
+categoryRouter.delete("/delete-category/:id",authorization.authorized,categoryContoller.deleteCategory)
 export default categoryRouter

@@ -6,7 +6,7 @@ import Pagination from "../../components/Pagination";
 import ScreenHeader from "../../components/ScreenHeader";
 import Spinner from "../../components/Spinner";
 import { clearMessage, setSuccess } from "../../Store/reducers/globalReducer";
-import { useGetQuery } from "../../Store/services/categoryService";
+import { useDeleteCategoryMutation, useGetQuery } from "../../Store/services/categoryService";
 import Wrapper from "./Wrapper";
 
 const Categories = () => {
@@ -25,6 +25,19 @@ const Categories = () => {
       dispatch(clearMessage());
     };
   }, []);
+  const deleteCategory = (id) => {
+    if(window.confirm("Are you really want to delete the category")){
+      removeCategory(id)
+    }
+  }
+  const [removeCategory,res] = useDeleteCategoryMutation()
+  console.log(res);
+  useEffect(()=>{
+    if(res.isSuccess){
+      dispatch(setSuccess(res?.data?.message))
+
+    }
+  },[res?.data?.message])
   return (
     <Wrapper>
       <ScreenHeader>
@@ -49,7 +62,7 @@ const Categories = () => {
                   <tr className="odd:bg-gray-800" key={category._id}>
                     <td className="p-3 capitalize text-sm font-normal text-gray-400">{category.name}</td>
                     <td className="p-3 capitalize text-sm font-normal text-gray-400"><Link className="btn btn-warning" to={`/dashboard/update-category/${category._id}`}>edit</Link></td>
-                    <td className="p-3 capitalize text-sm font-normal text-gray-400"><button>delete</button></td>
+                    <td className="p-3 capitalize text-sm font-normal text-gray-400"><button onClick={()=>deleteCategory(category._id)} className="btn btn-danger">delete</button></td>
                   </tr>
                 ))
               }
