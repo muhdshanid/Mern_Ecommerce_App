@@ -31,7 +31,6 @@ const Categories = () => {
     }
   }
   const [removeCategory,res] = useDeleteCategoryMutation()
-  console.log(res);
   useEffect(()=>{
     if(res.isSuccess){
       dispatch(setSuccess(res?.data?.message))
