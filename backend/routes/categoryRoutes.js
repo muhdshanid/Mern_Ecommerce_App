@@ -7,5 +7,6 @@ const categoryRouter = express.Router()
 categoryRouter.post("/create-category",[categoryValidations,authorization.authorized],categoryContoller.create)
 categoryRouter.get("/categories/:page",authorization.authorized,categoryContoller.categories)
 categoryRouter.get("/fetch-category/:id",authorization.authorized,categoryContoller.fetchCategory)
+categoryRouter.put("/update-category/:id",[categoryValidations,authorization.authorized],categoryContoller.updateCategory)
 
 export default categoryRouter

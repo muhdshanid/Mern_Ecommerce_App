@@ -45,6 +45,24 @@ class Category {
       console.log(error.message);
     }
   }
+  async updateCategory(req,res){
+    const {id} = req.params
+    const {name} = req.body  
+    const errors = validationResult(req);
+    if(errors.isEmpty()){
+      const exist = await CategoryModel.findOne({ name });
+      if(!exist){
+        const response = await CategoryModel.updateOne({_id:id},{$set:{name}})
+        res.status(200).json({message: "Your category has updated successfully" });
+      }else{
+        return res.status(401).json({ errors:[{msg:`${name} category already exist`}]});
+
+      }
+    }else{
+      return res.status(401).json({ errors: errors.array() });
+    }
+
+  }
 }
 
 const category = new Category();
