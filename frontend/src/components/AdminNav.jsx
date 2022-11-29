@@ -4,7 +4,7 @@ import { logout } from '../Store/reducers/authReducer'
 const AdminNav = ({openSideBar}) => {
     const dispatch = useDispatch()
     const adminLogout = () => {
-        dispatch(logout())
+        dispatch(logout("token"))
     }
   return (
     <nav className=' left-0 sm:left-64  right-0 mx-4 z-50'>
