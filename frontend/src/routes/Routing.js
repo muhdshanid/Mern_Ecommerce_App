@@ -8,6 +8,7 @@ import Categories from "../screens/dashboard/Categories";
 import AddCategories from "../screens/dashboard/AddCategories";
 import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import CreateProduct from "../screens/dashboard/CreateProduct";
+import EditProduct from "../screens/dashboard/EditProduct";
 
 const Routing = () => {
   return (
@@ -29,6 +30,22 @@ const Routing = () => {
             element={
               <PrivateRoutes>
                 <Products />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="products/:page"
+            element={
+              <PrivateRoutes>
+                <Products />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="edit-product/:id"
+            element={
+              <PrivateRoutes>
+                <EditProduct />
               </PrivateRoutes>
             }
           />

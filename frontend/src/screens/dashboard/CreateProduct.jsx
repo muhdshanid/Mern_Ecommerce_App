@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ScreenHeader from "../../components/ScreenHeader";
 import Spinner from "../../components/Spinner";
 import { useAllCategoriesQuery } from "../../Store/services/categoryService";
 import Wrapper from "./Wrapper";
 import { TwitterPicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
+import { setSuccess } from '../../Store/reducers/globalReducer'
+
 import Colors from "../../components/Colors";
 import SizesList from "../../components/SizesList";
 import ImagesPreview from "../../components/ImagesPreview";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import toast, { Toaster } from 'react-hot-toast'
 import { useCreateProductMutation } from "../../Store/services/productService";
+import { useDispatch } from "react-redux";
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
   const [value, setValue] = useState("");
@@ -89,13 +93,29 @@ const CreateProduct = () => {
   }
   const [createNewProduct,res] = useCreateProductMutation()
   console.log(res);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(!res.isSuccess){
+      res?.error?.data?.errors.map((err)=>{
+        toast.error(err.msg)
+      })
+    }
+  },[res?.error?.data?.errors])
+  useEffect(()=>{
+    if(res.isSuccess){
+      dispatch(setSuccess(res?.data?.msg))
+      navigate("/dashboard/products")
+    }
+  },[res?.isSuccess])
   return (
     <Wrapper>
       <ScreenHeader>
-        <Link className="btn-dark" to={"/dashboard/products"}>
+        <Link className="btn-dark" to={"/dashboard/products"}> 
           <i className="bi bi-arrow-left-short mr-2"></i>products list
         </Link>
       </ScreenHeader>
+      <Toaster position="top-right" reverseOrder={true}/>
       <div className="flex flex-wrap -mx-3 mt-[-30px]">
         <form onSubmit={createProduct} className="w-full xl:w-8/12 p-2">
           <div className="flex flex-wrap ">
@@ -247,7 +267,7 @@ const CreateProduct = () => {
               <ReactQuill  theme="snow" id="description" placeholder="Description..." value={value} onChange={setValue} />{" "}
             </div>
             <div className="w-full pt-2 px-2">
-                <input type="submit" value="Save Product" className="btn btn-indigo"/>
+                <input type="submit" disabled={res.isLoading ? true : false} value={res.isLoading ? "Loading..." : "Save Product"} className="btn btn-indigo"/>
             </div>
           </div>
         </form>
