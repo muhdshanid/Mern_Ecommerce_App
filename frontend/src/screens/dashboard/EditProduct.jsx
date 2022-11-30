@@ -7,7 +7,7 @@ import Wrapper from "./Wrapper";
 import { TwitterPicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
 import { setSuccess } from '../../Store/reducers/globalReducer'
-import parser from 'html-react-parser'
+import h2p from 'html2plaintext'
 import Colors from "../../components/Colors";
 import SizesList from "../../components/SizesList";
 import ReactQuill from "react-quill";
@@ -91,7 +91,7 @@ const EditProduct = () => {
     if(!fetching){
       setState(product)
       setSizeList(product.sizes)
-      setValue(parser(product.description))
+      setValue(h2p(product.description))
     }
   },[product])
   return (

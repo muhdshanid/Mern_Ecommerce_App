@@ -9,5 +9,6 @@ categoryRouter.get("/categories/:page",authorization.authorized,categoryContolle
 categoryRouter.get("/fetch-category/:id",authorization.authorized,categoryContoller.fetchCategory)
 categoryRouter.put("/update-category/:id",[categoryValidations,authorization.authorized],categoryContoller.updateCategory)
 categoryRouter.delete("/delete-category/:id",authorization.authorized,categoryContoller.deleteCategory)
-categoryRouter.get("/allcategories",authorization.authorized,categoryContoller.allCategries)
+categoryRouter.get("/allcategories",categoryContoller.allCategries)
+categoryRouter.get("/random-categories",categoryContoller.randomCategories)
 export default categoryRouter

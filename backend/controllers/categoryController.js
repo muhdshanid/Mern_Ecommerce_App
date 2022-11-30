@@ -81,6 +81,16 @@ class Category {
       return res.status(500).json("Server internal error")
     }
   }
+  async randomCategories(req,res){
+    try {
+      const categories = await CategoryModel.aggregate([
+        {$sample:{size:3}}
+      ])
+      return res.status(200).json({categories})
+    } catch (error) {
+      return res.status(500).json("Serve internal error")
+    }
+  }
 }
 
 const category = new Category();

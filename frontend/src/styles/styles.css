@@ -9,6 +9,9 @@
     .pagination-link {
         @apply border border-gray-800 text-gray-500 text-sm font-medium block py-2 px-4 bg-gray-900
     }
+    .pagination-link-light {
+        @apply border   border-gray-400 text-gray-700 text-sm font-medium block py-2 px-4 bg-white
+    }
     .size {
         @apply border border-gray-400 ml-2 text-sm px-3 py-1.5 mt-1 uppercase cursor-pointer rounded text-gray-400 
     }
@@ -29,7 +32,7 @@
     }
 
     .my-container {
-        @apply max-w-screen-xl w-full mx-auto px-6 
+        @apply max-w-screen-xl w-full mx-auto px-14 
     }
     .flex-y {
         @apply flex items-center
@@ -50,3 +53,62 @@
     a.active {
         @apply bg-gray-50
     }
+
+    .description h1{
+        @apply text-4xl capitalize
+    }
+
+    .description h2{
+        @apply text-3xl capitalize
+    }
+
+    .description h3{
+        @apply text-2xl capitalize
+    }
+
+    .description h4{
+        @apply text-xl capitalize
+    }
+
+    /* swiper */
+
+    .swiper {
+        width: 100%;
+        height: 70vh;
+      }
+      
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+      
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .slide {
+        @apply relative 
+      }
+      .slide-img {
+        @apply absolute inset-0  bg-no-repeat bg-cover 
+      }
+
+
