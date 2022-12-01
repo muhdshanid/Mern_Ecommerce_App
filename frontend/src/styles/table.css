@@ -1,0 +1,14 @@
+.table-container {
+    @apply w-full rounded-lg overflow-x-auto
+}
+.thead-tr {
+    @apply text-left bg-gray-50
+}
+
+.th{
+    @apply p-4 uppercase text-xs font-bold text-gray-600 text-left
+}
+
+.td {
+    @apply p-4 text-sm text-gray-700
+}

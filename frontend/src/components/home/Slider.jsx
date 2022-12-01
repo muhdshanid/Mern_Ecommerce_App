@@ -26,8 +26,8 @@ const Slider = () => {
       {data?.categories.length > 0 &&
         data?.categories.map((cat, index) => (
           <>
-            <SwiperSlide className="slide">
-              <div  key={index}
+            <SwiperSlide key={index} className="slide">
+              <div  
                 className={`slide-img `}
               >
                 <img className="w-full h-full object-cover" src={images[index]} alt="banner" />

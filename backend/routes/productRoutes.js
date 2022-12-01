@@ -11,5 +11,6 @@ productRouter.get("/products/:page",authorization.authorized,product.getProducts
 productRouter.get("/product/:id",product.getProduct)
 productRouter.put("/product",[authorization.authorized,productValidation],product.updateProduct)
 productRouter.delete("/delete-product/:id",authorization.authorized,product.deleteProduct)
-productRouter.get("/cat-products/:name/:page",homeProducts.catProducts)
-export default  productRouter
+productRouter.get("/cat-products/:name/:page?",homeProducts.catProducts)
+productRouter.get("/search-products/:keyword/:page?",homeProducts.catProducts)
+export default  productRouter 

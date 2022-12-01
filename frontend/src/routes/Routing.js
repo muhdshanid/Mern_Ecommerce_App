@@ -17,6 +17,8 @@ import UserRoute from "./UserRoute";
 import UserAuthRoute from "./UserAuthRoute";
 import CatProduct from "../screens/home/CatProduct";
 import Product from "../screens/home/Product";
+import SearchProducts from "../screens/home/SearchProducts";
+import Cart from "../screens/home/Cart";
 
 const Routing = () => {
   return (
@@ -25,6 +27,7 @@ const Routing = () => {
         <Route path="/" element={<Home/>} />
         <Route path="/cat-products/:name/" element={<CatProduct/>} />
         <Route path="/cat-products/:name/:page" element={<CatProduct/>} />
+        <Route path="/search-products/:keyword/:page" element={<SearchProducts/>} />
         <Route path="/product/:name" element={<Product/>} />
         <Route element={<UserAuthRoute/>}>
         <Route path="/login" element={<Login/>} />
@@ -32,6 +35,7 @@ const Routing = () => {
         </Route>
         <Route element={<UserRoute/>}>
         <Route path="/user" element={<Dashboard/>} />
+        <Route path="/cart" element={<Cart/>} />
         </Route>
         <Route path="auth">
           <Route

@@ -14,11 +14,19 @@ const homeProductsService = createApi({
                         method: "GET",
                     }
                 }
+            }),
+            searchProducts:builder.query({
+                query:(params) => {
+                    return {
+                        url: `search-products/${params.keyword}/${params.page}`,
+                        method: "GET",
+                    }
+                }
             })
         }
     }
 }) 
 
-export const {useCatProductsQuery} = homeProductsService
+export const {useCatProductsQuery,useSearchProductsQuery} = homeProductsService
 
 export default homeProductsService

@@ -117,6 +117,7 @@ class Product {
   }
   async getProduct(req, res) {
     const { id } = req.params;
+   
     try {
       const product = await ProductModel.findOne({ _id: id })
       //.select([

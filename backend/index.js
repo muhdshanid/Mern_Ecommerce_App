@@ -5,6 +5,7 @@ import userRouter from './routes/userRoutes.js'
 import cors from 'cors'
 import categoryRouter from './routes/categoryRoutes.js'
 import productRouter from './routes/productRoutes.js'
+import paymentRouter from './routes/paymentRoutes.js'
 dotenv.config()
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(cors())
 app.use("/api",userRouter)
 app.use("/api",categoryRouter)
 app.use("/api",productRouter)
+app.use("/api",paymentRouter)
 
 app.get("/",(req,res)=>{
     res.json({msg:"Welcome to chawkbazar once again"})
