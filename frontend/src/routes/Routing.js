@@ -19,6 +19,10 @@ import CatProduct from "../screens/home/CatProduct";
 import Product from "../screens/home/Product";
 import SearchProducts from "../screens/home/SearchProducts";
 import Cart from "../screens/home/Cart";
+import Orders from "../screens/dashboard/Orders";
+import OrderDetails from "../screens/dashboard/OrderDetails";
+import UserOrder from "../screens/users/UserOrder";
+import UserOrderDetails from "../screens/users/UserOrderDetails";
 
 const Routing = () => {
   return (
@@ -35,8 +39,11 @@ const Routing = () => {
         </Route>
         <Route element={<UserRoute/>}>
         <Route path="/user" element={<Dashboard/>} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/orders" element={<UserOrder/>} />
+        <Route path="/orders/:page" element={<UserOrder/>} />
+        <Route path="/user-order-details/:id" element={<UserOrderDetails/>} />
         </Route>
+        <Route path="/cart" element={<Cart/>} />
         <Route path="auth">
           <Route
             path="admin-login"
@@ -109,6 +116,30 @@ const Routing = () => {
             element={
               <PrivateRoutes>
                 <AddCategories />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="orders"
+            element={
+              <PrivateRoutes>
+                <Orders />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="orders/:page"
+            element={
+              <PrivateRoutes>
+                <Orders />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="order-details/:id"
+            element={
+              <PrivateRoutes>
+                <OrderDetails />
               </PrivateRoutes>
             }
           />
