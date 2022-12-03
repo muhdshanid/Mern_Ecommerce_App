@@ -17,7 +17,6 @@ const Products = () => {
     page = 1;
   }
   const { data = [], isFetching } = useGetProductsQuery(page);
-  console.log(data);
   useEffect(() => {
     if (success) {
       toast.success(success);

@@ -8,5 +8,5 @@ paymentRouter.post("/create-checkout-session",authorization.authorized,paymentCo
 paymentRouter.post('/webhook',express.raw({type: 'application/json'}), paymentController.checkoutSession);
 paymentRouter.get("/verify-payment/:id",authorization.authorized,paymentController.paymentVerify)
 
-export default paymentRouter; 
+export default paymentRouter;  
  

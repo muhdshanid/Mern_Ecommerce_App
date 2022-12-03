@@ -92,6 +92,11 @@ class PaymentController {
         customer = JSON.parse(customer?.metadata?.cart);
         customer.forEach(async (ctr) => {
           try {
+            let reviewStatus = false;
+            const findOrder = await OrderModel.findOne({productId:ctr._id,userId: ctr.userId}).where('review').equals(true);
+            if(findOrder){
+              reviewStatus = true
+            };
             await OrderModel.create({
               productId: ctr._id,
               userId: ctr.userId,
@@ -99,6 +104,7 @@ class PaymentController {
               color: ctr.color,
               quantities: ctr.quantity,
               address: data.customer_details.address,
+              review:reviewStatus
             });
             const product = await ProductModel.findOne({ _id: ctr._id });
             if (product) {
@@ -129,7 +135,7 @@ class PaymentController {
     const {id} = req.params
     try {
       const session = await stripe.checkout.sessions.retrieve(id)
-      return res.status(200).json({msg:"Your paymente verified successfully",
+      return res.status(200).json({msg:"Your payment verified successfully",
     status:session.payment_status})
     } catch (error) {
       return res.status(500).json(error.message)

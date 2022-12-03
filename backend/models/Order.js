@@ -27,6 +27,10 @@ const orderSchema = new Schema({
     type:Boolean,
     default:false
   },
+  review:{
+    type:Boolean,
+    default:false
+  },
 },{
     timestamps:true
 });

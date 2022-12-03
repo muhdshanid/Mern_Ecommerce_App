@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import AccountList from "../../components/home/AccountList";
 import Header from "../../components/home/Header";
 import Nav from "../../components/home/Nav";
-import {
-  Link,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import moment from "moment";
 import { discount } from "../../utils/discount";
 import currency from "currency-formatter";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { useOrderDetailsQuery } from "../../Store/services/orderService";
 import Spinner from "../../components/Spinner";
+import ReviewForm from "../../components/ReviewForm";
+import DetailsList from "../../components/DetailsList";
 const UserOrderDetails = () => {
   const { id } = useParams();
+  const [state, setState] = useState(false)
+    const toggleReview = () => {
+        setState(!state)
+    }
   const navigate = useNavigate();
   const { data, isFetching } = useOrderDetailsQuery(id);
   const total = currency.format(
@@ -26,6 +28,7 @@ const UserOrderDetails = () => {
   );
   return (
     <>
+    <ReviewForm data={data} stateValue={state} toggleReview={toggleReview}/>
       <Nav />
       <div className="mt-[70px]">
         <Header>order details</Header>
@@ -43,7 +46,7 @@ const UserOrderDetails = () => {
                 <span className="ml-3">details</span>
               </h1>
               {!isFetching ? (
-                <div className="flex flex-col md:flex-row flex-wrap mt-2 ">
+                <div className="flex flex-col md:flex-row flex-wrap my-5 ">
                   <div className="w-[120px] md:w-[160px] md:h-[160px] h-[120px] overflow-hidden">
                     <img
                       src={`/images/${data?.details?.productId?.image1}`}
@@ -52,30 +55,25 @@ const UserOrderDetails = () => {
                     />
                   </div>
                   <div className="flex-1 md:ml-4 md:my-0  my-4">
-                    <div className="flex">
-                      <h4 className="text-base text-gray-600 capitalize font-normal">
-                        order number:
+                    <DetailsList label={"order number"} data={data?.details?._id} />
+                    <DetailsList label={"product name"} data={data?.details?.productId?.title} />
+                    <DetailsList label={"order received"} data={data?.details?.received ? "yes" : "no"} />
+                    <DetailsList label={"order date"} data={moment(data?.details?.createdAt).format("MMMM Do YYYY")} />
+                    {
+                      data?.details?.received && 
+                    <DetailsList label={"received date"} data={moment(data?.details?.updatedAt).format("MMMM Do YYYY")} />
+
+                    }
+                    {
+                      data?.details?.received && !data?.details?.review  &&
+                    <div className="flex mt-2 items-center justify-between">
+                    <h4 className="mr-3 text-base text-gray-600 capitalize font-normal">
+                        add rating:
                       </h4>
-                      <span className="ml-2 font-medium text-gray-900">
-                        {data?.details?._id}
-                      </span>
+                      <button onClick={()=>toggleReview()} className="btn-indigo rounded !py-2 !text-sm
+                      ">add review</button>
                     </div>
-                    <div className="flex mt-1">
-                      <h4 className="text-base text-gray-600 capitalize font-normal">
-                        product name:
-                      </h4>
-                      <span className="ml-2 font-medium text-gray-900 capitalize">
-                        {data?.details?.productId?.title}
-                      </span>
-                    </div>
-                    <div className="flex mt-1">
-                      <h4 className="text-base text-gray-600 capitalize font-normal">
-                        order received:
-                      </h4>
-                      <span className="ml-2 font-medium text-gray-900 capitalize">
-                        {data?.details?.received ? "yes" : "no"}
-                      </span>
-                    </div>
+                    }
                     <div className="overflow-x-auto mt-4">
                       <table className="w-full">
                         <thead>

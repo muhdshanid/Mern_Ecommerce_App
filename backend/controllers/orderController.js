@@ -1,4 +1,7 @@
 import OrderModel from "../models/Order.js";
+import { validationResult } from "express-validator";
+import ReviewModel from "../models/Reviews.js";
+import ProductModel from "../models/Product.js";
 
 class OrderController {
   async getOrder(req, res) {
@@ -15,7 +18,7 @@ class OrderController {
         ).populate("userId", "-password -updatedAt -createdAt -admin")
         .skip(skip)
         .limit(perPage)
-        .sort({ updatedAt: -1 });
+        .sort({ createdAt: -1 });
       return res.status(200).json({ orders: response, perPage, count });
     } catch (error) {
       console.log(error.message);
@@ -48,6 +51,27 @@ class OrderController {
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({errors:error.message})
+    }
+  }
+  async createReview (req,res){
+    const errors = validationResult(req)
+    const {rating,message,user,product,id} = req.body
+    if(errors.isEmpty()){
+      try {
+        const createdReview = await  ReviewModel.create({
+          rating:parseInt(rating),
+          comment:message,
+          productId:product,
+          userId:user
+        })
+        await OrderModel.findByIdAndUpdate(id,{review:true})
+        await ProductModel.findOneAndUpdate({_id:product},{$push:{reviews:createdReview._id}})
+        return res.status(201).json({msg:"Review has created successfully"})
+      } catch (error) {
+        return res.status(500).json({errors:error.message})
+      }
+    }else{
+      return res.status(400).json({errors:errors.array()})
     }
   }
 }
