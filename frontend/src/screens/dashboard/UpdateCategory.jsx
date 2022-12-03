@@ -34,7 +34,7 @@ const UpdateCategory = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-        <Link className="btn-dark" to={'/dashboard/categories'}><i className="bi bi-arrow-left-short mr-2"></i>category item</Link>
+        <Link className="btn-dark " to={'/dashboard/categories'}><i className="bi bi-arrow-left-short mr-2"></i>category item</Link>
       </ScreenHeader>
       {
         !isFetching ? <form onSubmit={updateSubmit} className=' w-full md:w-8/12 '>

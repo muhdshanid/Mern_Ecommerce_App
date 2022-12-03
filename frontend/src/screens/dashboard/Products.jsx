@@ -34,7 +34,7 @@ const Products = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-        <Link className="btn-dark" to={"/dashboard/create-product"}>
+        <Link className="btn-dark " to={"/dashboard/create-product"}>
           create product<i className="bi bi-plus"></i>
         </Link>
         <Toaster position="top-right" />

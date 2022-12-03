@@ -26,8 +26,8 @@ const OrderDetails = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-        <div className="flex items-center bg-gray-800">
-        <Link to={"/dashboard/orders"}><IoChevronBackSharp/></Link><span className="ml-3"> Order Details</span>
+        <div className="flex items-center">
+        <Link className="bg-gray-900 px-2 py-2 flex items-center rounded-md" to={"/dashboard/orders"}><IoChevronBackSharp/><span className="ml-2 "> Order Details</span></Link>
         <span className="ml-4"><ReactToPrint
         trigger={() => <button className="flex items-center btn bg-indigo-600 py-1 text-sm font-semibold px-3"><BsPrinter/>
         <span className="ml-2">Print</span></button>}

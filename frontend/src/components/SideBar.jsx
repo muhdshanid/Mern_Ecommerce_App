@@ -10,7 +10,7 @@ const SideBar = ({left,closeSideBar}) => {
       <ul className='mt-4 '>
         <li className='px-4 py-3 transition-all cursor-pointer text-white flex items-center hover:bg-gray-600'>
         <i className="bi bi-card-list mr-2 inline-block text-lg"></i><Link
-        className='text-base capitalize' to={"/dashboard/products"}>Products</Link>
+        className='text-base capitalize' to="/dashboard/products">Products</Link>
         </li>
         <li className='px-4 py-3 transition-all cursor-pointer text-white flex items-center hover:bg-gray-600'>
         <i className="bi bi-bag-check mr-2 inline-block text-lg"></i><Link
@@ -19,10 +19,10 @@ const SideBar = ({left,closeSideBar}) => {
         <li className='px-4 py-3 transition-all cursor-pointer text-white flex items-center hover:bg-gray-600'>
         <i className="bi bi bi-people-fill mr-2 inline-block text-lg"></i><Link
         className='text-base capitalize' to={"/dashboard/products"}>customers</Link>
-        </li>
+        </li>  
         <li className='px-4 py-3 transition-all cursor-pointer text-white flex items-center hover:bg-gray-600'>
         <i className="bi bi-bar-chart mr-2 inline-block text-lg"></i><Link
-        className='text-base capitalize' to={"/dashboard/categories"}>categories</Link>
+        className='text-base capitalize' to="/dashboard/categories">categories</Link>
         </li>
       </ul>
     </div>

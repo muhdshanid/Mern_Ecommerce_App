@@ -28,7 +28,7 @@ const AddCategories = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-        <Link className="btn-dark" to={'/dashboard/categories'}><i className="bi bi-arrow-left-short mr-2"></i>category list</Link>
+        <Link className="btn-dark " to={'/dashboard/categories'}><i className="bi bi-arrow-left-short mr-2"></i>category list</Link>
       </ScreenHeader>
       <form onSubmit={submitCategory} className=' w-full md:w-8/12 '>
         <h3 className='text-lg capitalize mb-3'>create category</h3>

@@ -40,7 +40,7 @@ const Categories = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-        <Link className="btn-dark" to={"/dashboard/create-category"}>
+        <Link className="btn-dark " to={"/dashboard/create-category"}>
           Add category<i className="bi bi-plus"></i>
         </Link>
       </ScreenHeader>

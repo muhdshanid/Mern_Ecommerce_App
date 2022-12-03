@@ -97,7 +97,7 @@ const EditProduct = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-        <Link className="btn-dark" to={"/dashboard/products"}> 
+        <Link className="btn-dark " to={"/dashboard/products"}> 
           <i className="bi bi-arrow-left-short mr-2"></i>products list
         </Link>
       </ScreenHeader>
